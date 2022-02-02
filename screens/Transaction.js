@@ -32,8 +32,8 @@ export default class TransactionScreen extends Component {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
 
     this.setState({
-      /*status === "granted" is true when user has granted permission
-          status === "granted" is false when user has not granted the permission
+      /*status === "granted" es true cuando el usuario ha concedido el permiso
+          status === "granted" es false cuando el usuario no ha concedido el permiso
         */
       hasCameraPermissions: status === "granted",
       domState: domState,
@@ -44,13 +44,13 @@ export default class TransactionScreen extends Component {
   handleBarCodeScanned = async ({ type, data }) => {
     const { domState } = this.state;
 
-    if (domState === "bookId") {
+    if (domState === "Id del libro") {
       this.setState({
         bookId: data,
         domState: "normal",
         scanned: true
       });
-    } else if (domState === "studentId") {
+    } else if (domState === "Id el alumno") {
       this.setState({
         studentId: data,
         domState: "normal",
@@ -75,11 +75,11 @@ export default class TransactionScreen extends Component {
   };
 
   initiateBookIssue = () => {
-    console.log("Book issued to the student!");
+    console.log("Libro emitido al alumno");
   };
 
   initiateBookReturn = () => {
-    console.log("Book returned to the library!");
+    console.log("Libro regresado a la biblioteca!");
   };
 
   render() {
@@ -125,14 +125,14 @@ export default class TransactionScreen extends Component {
                 style={styles.scanbutton}
                 onPress={() => this.getCameraPermissions("studentId")}
               >
-                <Text style={styles.scanbuttonText}>Scan</Text>
+                <Text style={styles.scanbuttonText}>Escanear</Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity
               style={[styles.button, { marginTop: 25 }]}
               onPress={this.handleTransaction}
             >
-              <Text style={styles.buttonText}>Submit</Text>
+              <Text style={styles.buttonText}>Entregar</Text>
             </TouchableOpacity>
           </View>
         </ImageBackground>
